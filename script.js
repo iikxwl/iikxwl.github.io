@@ -1,10 +1,12 @@
 const personalData = {
   name: "Christian Batista",
-  role: "Desenvolvedor Full Stack Júnior | Foco em Back-end",
+  role: "Desenvolvedor Backend em formação | Python • APIs • Segurança",
   email: "Christian.abatista07@gmail.com",
   github: "https://github.com/iikxwl",
   linkedin: "https://www.linkedin.com/in/christianabatista/"
 };
+
+const REPOSITORY_URL = "https://github.com/iikxwl/iikxwl.github.io";
 
 const fallbackProjects = [
   {
@@ -13,11 +15,11 @@ const fallbackProjects = [
     name: "API de Gerenciamento de Usuários",
     category: "back-end",
     categoryLabel: "Back-end",
-    description: "API REST simples para cadastro, listagem, atualização e remoção de usuários.",
-    technologies: ["Node.js", "Express", "JavaScript", "JSON"],
+    description: "API para cadastro, listagem, atualização e remoção de usuários com organização REST.",
+    technologies: ["Python (planejado)", "FastAPI (planejado)", "JavaScript", "JSON"],
     status: "Em desenvolvimento",
     type: "API REST",
-    details: "Projeto de estudo com foco em organização de rotas REST, validação de entrada e estrutura de dados em JSON.",
+    details: "Projeto de estudo para praticar estrutura de endpoints, validação de entrada e organização de código backend.",
     features: [
       "GET /api/users",
       "GET /api/users/:id",
@@ -26,13 +28,38 @@ const fallbackProjects = [
       "DELETE /api/users/:id"
     ],
     nextSteps: [
-      "Adicionar paginação de resultados.",
-      "Implementar testes automatizados da API.",
-      "Migrar persistência de JSON para banco de dados relacional."
+      "Adicionar persistência em banco relacional.",
+      "Criar testes automatizados básicos.",
+      "Evoluir para estrutura em camadas."
     ],
     coverImage: "assets/images/projects/api-001-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
+    githubUrl: REPOSITORY_URL,
     demoUrl: "projects/users-api.html"
+  },
+  {
+    id: "auth-004",
+    code: "AUTH-004",
+    name: "Sistema de Login Seguro",
+    category: "back-end",
+    categoryLabel: "Back-end",
+    description: "Projeto de autenticação com foco em validação de credenciais e fundamentos de segurança.",
+    technologies: ["Python (planejado)", "FastAPI (planejado)", "JWT (planejado)", "SQL (planejado)"],
+    status: "Planejado",
+    type: "Autenticação",
+    details: "Roadmap de autenticação segura com hash de senha, JWT e boas práticas de controle de sessão.",
+    features: [
+      "Validação de e-mail e senha",
+      "Estrutura para hash de senha",
+      "Fluxo para emissão de token",
+      "Base para autorização por perfil"
+    ],
+    nextSteps: [
+      "Implementar hash de senha com biblioteca adequada.",
+      "Adicionar JWT com expiração.",
+      "Persistir usuários e logs de acesso."
+    ],
+    coverImage: "assets/images/projects/auth-004-cover.jpg",
+    githubUrl: REPOSITORY_URL
   },
   {
     id: "fullstack-002",
@@ -40,11 +67,11 @@ const fallbackProjects = [
     name: "Sistema de Tarefas Full Stack",
     category: "full-stack",
     categoryLabel: "Full Stack",
-    description: "Aplicação de tarefas com front-end integrado ao back-end, permitindo criar, concluir e excluir tarefas.",
+    description: "Aplicação de tarefas com frontend integrado ao backend para operações CRUD.",
     technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
-    status: "Em desenvolvimento",
+    status: "Funcional",
     type: "CRUD",
-    details: "Aplicação prática para treinar fluxo CRUD completo, integração por Fetch API e atualização dinâmica da interface.",
+    details: "Projeto para praticar fluxo completo de criação, atualização e remoção de tarefas com integração por API.",
     features: [
       "GET /api/tasks",
       "POST /api/tasks",
@@ -52,12 +79,12 @@ const fallbackProjects = [
       "DELETE /api/tasks/:id"
     ],
     nextSteps: [
-      "Adicionar filtro por status (pendente/concluída).",
-      "Adicionar edição do título da tarefa.",
-      "Implementar autenticação por usuário."
+      "Adicionar autenticação por usuário.",
+      "Criar filtros de busca e status.",
+      "Planejar migração do backend para Python."
     ],
     coverImage: "assets/images/projects/fullstack-002-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
+    githubUrl: REPOSITORY_URL,
     demoUrl: "projects/tasks.html"
   },
   {
@@ -66,51 +93,25 @@ const fallbackProjects = [
     name: "API de Contato do Portfólio",
     category: "back-end",
     categoryLabel: "Back-end",
-    description: "Back-end responsável por receber, validar e enviar mensagens do formulário de contato.",
-    technologies: ["Node.js", "Express", "JavaScript", "JSON"],
-    status: "Concluído",
+    description: "API para receber, validar e processar mensagens enviadas pelo formulário de contato.",
+    technologies: ["Node.js", "Express", "Validação de dados", "JSON"],
+    status: "Funcional",
     type: "API",
-    details: "API para tratamento de mensagens com validação de campos, persistência local e envio automático por SMTP quando configurado.",
+    details: "Back-end com validação de campos e resposta padronizada para mensagens de contato.",
     features: [
       "POST /api/contact",
-      "Validação de campos",
-      "Envio automático de e-mail",
-      "Resposta JSON de sucesso ou erro"
+      "Validação de campos obrigatórios",
+      "Resposta estruturada de sucesso e erro",
+      "Integração com formulário do portfólio"
     ],
     nextSteps: [
-      "Adicionar proteção anti-spam com rate limit.",
-      "Implementar painel administrativo de mensagens.",
-      "Registrar logs de envio de e-mail por mensagem."
+      "Adicionar rate limit para proteção anti-spam.",
+      "Registrar logs de requisições.",
+      "Planejar migração para FastAPI."
     ],
     coverImage: "assets/images/projects/backend-003-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
+    githubUrl: REPOSITORY_URL,
     demoUrl: "projects/contact-api.html"
-  },
-  {
-    id: "auth-004",
-    code: "AUTH-004",
-    name: "Sistema de Login Simples",
-    category: "back-end",
-    categoryLabel: "Back-end",
-    description: "Estrutura inicial de autenticação com validação de campos e simulação segura de login.",
-    technologies: ["Node.js", "Express", "JavaScript"],
-    status: "Em desenvolvimento",
-    type: "Autenticação",
-    details: "Demonstração didática de autenticação, sem armazenamento de senha real e com comentários para evolução segura.",
-    features: [
-      "Validação de campos",
-      "Simulação de login",
-      "Organização de rotas",
-      "Base para futura evolução com JWT e hash"
-    ],
-    nextSteps: [
-      "Adicionar hash de senha (bcrypt).",
-      "Adicionar autenticação por JWT.",
-      "Persistir usuários em banco de dados."
-    ],
-    coverImage: "assets/images/projects/auth-004-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
-    demoUrl: "projects/login.html"
   },
   {
     id: "api-005",
@@ -118,103 +119,102 @@ const fallbackProjects = [
     name: "Consulta de API Externa",
     category: "api",
     categoryLabel: "API",
-    description: "Projeto que consome uma API pública, trata erros, exibe loading e mostra dados na tela.",
+    description: "Consumo de API pública com tratamento de erros, estado de carregamento e exibição de dados.",
     technologies: ["JavaScript", "Fetch API", "HTML", "CSS"],
-    status: "Em desenvolvimento",
+    status: "Funcional",
     type: "Consumo de API",
-    details: "Projeto para praticar consumo de API externa com tratamento de erro, controle de estado e renderização de resultados.",
+    details: "Projeto voltado para integração com serviços externos e tratamento de cenários de falha.",
     features: [
-      "Buscar dados de API pública",
-      "Tratar erros de requisição",
-      "Exibir loading",
-      "Mostrar resultado em tela"
+      "Busca de dados por usuário",
+      "Tratamento de erro de requisição",
+      "Feedback de carregamento",
+      "Renderização dinâmica de resultados"
     ],
     nextSteps: [
-      "Adicionar cache simples para evitar chamadas repetidas.",
-      "Adicionar suporte a múltiplas APIs públicas.",
-      "Melhorar acessibilidade na exibição dos resultados."
+      "Adicionar cache local para reduzir chamadas.",
+      "Melhorar estados de erro para acessibilidade.",
+      "Criar versão em Python para automação."
     ],
     coverImage: "assets/images/projects/api-005-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
+    githubUrl: REPOSITORY_URL,
     demoUrl: "projects/api-fetch.html"
   },
   {
     id: "portfolio-006",
     code: "PORTFOLIO-006",
-    name: "Portfólio Full Stack",
+    name: "Portfólio Pessoal",
     category: "full-stack",
     categoryLabel: "Full Stack",
-    description: "Portfólio pessoal com front-end responsivo, back-end funcional, projetos dinâmicos, currículo online ATS-friendly e formulário conectado à API.",
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express"],
+    description: "Portfólio profissional com foco em backend, projetos práticos e currículo online ATS-friendly.",
+    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Python (planejado)"],
     status: "Em desenvolvimento",
     type: "Projeto pessoal",
-    details: "Projeto central reunindo arquitetura front-end + back-end, integração por API e apresentação profissional de estudos práticos.",
+    details: "Projeto central para consolidar estudos de backend, integração de APIs e comunicação profissional.",
     features: [
-      "Front-end responsivo",
-      "Back-end funcional",
-      "API de projetos",
-      "Formulário conectado ao back-end",
-      "Currículo online ATS-friendly"
+      "Layout responsivo",
+      "Seção de projetos dinâmica",
+      "Currículo online organizado",
+      "Contato integrado ao backend"
     ],
     nextSteps: [
-      "Adicionar testes de integração das rotas principais.",
-      "Publicar versão em ambiente de hospedagem.",
-      "Organizar roadmap público de evolução no GitHub."
+      "Adicionar seção técnica para roadmap em Python.",
+      "Melhorar cobertura de acessibilidade.",
+      "Publicar atualizações contínuas no GitHub."
     ],
     coverImage: "assets/images/projects/portfolio-006-cover.jpg",
-    githubUrl: "https://github.com/iikxwl",
+    githubUrl: REPOSITORY_URL,
     demoUrl: "index.html"
   }
 ];
 
 const skillsData = {
-  nodejs: {
-    title: "Node.js",
-    description: "Runtime JavaScript no servidor para construir APIs e aplicações back-end com fluxo assíncrono."
+  python: {
+    title: "Python",
+    description: "Linguagem principal para backend, automações e construção de APIs limpas e organizadas."
   },
-  express: {
-    title: "Express.js",
-    description: "Framework leve para estruturar rotas, middlewares e respostas HTTP em APIs REST."
+  fastapi: {
+    title: "FastAPI",
+    description: "Framework moderno para criar APIs REST performáticas com validação de dados por tipo."
   },
   "api-rest": {
     title: "APIs REST",
-    description: "Criação de endpoints organizados por recurso, usando métodos GET, POST, PUT e DELETE."
+    description: "Desenvolvimento de endpoints com rotas bem definidas e uso correto de métodos HTTP."
   },
-  crud: {
-    title: "CRUD",
-    description: "Implementação de operações de criação, leitura, atualização e remoção de dados."
+  jwt: {
+    title: "JWT",
+    description: "Estratégia de autenticação com token para proteger rotas e controlar sessões no backend."
   },
-  json: {
-    title: "JSON",
-    description: "Formato de dados usado para comunicação entre front-end e back-end, além de persistência inicial."
+  sql: {
+    title: "SQL",
+    description: "Base para modelagem e consulta de dados relacionais em aplicações backend."
   },
-  validacao: {
-    title: "Validação de dados",
-    description: "Verificação de entradas do usuário para reduzir erros e manter integridade dos dados."
+  "git-github": {
+    title: "Git/GitHub",
+    description: "Versionamento, histórico de mudanças e publicação de projetos em repositórios."
+  },
+  linux: {
+    title: "Linux",
+    description: "Ambiente comum para servidores e deploy, útil para rotinas de backend e automações."
+  },
+  "web-security": {
+    title: "Segurança Web Básica",
+    description: "Fundamentos de validação, autenticação, proteção de rotas e práticas defensivas em aplicações web."
+  },
+  discordpy: {
+    title: "Discord.py",
+    description: "Biblioteca para bots e automações no Discord, útil para praticar eventos, comandos e integrações."
+  },
+  html: {
+    title: "HTML",
+    description: "Estrutura semântica para interfaces claras, acessíveis e compatíveis com navegadores modernos."
+  },
+  css: {
+    title: "CSS",
+    description: "Estilização responsiva para garantir legibilidade e boa experiência em desktop e mobile."
   },
   javascript: {
     title: "JavaScript",
-    description: "Base para lógica no navegador e no servidor, unificando linguagem em projetos Full Stack."
-  },
-  fetch: {
-    title: "Fetch API",
-    description: "Comunicação do front-end com APIs para enviar e buscar dados de forma assíncrona."
-  },
-  html5: {
-    title: "HTML5",
-    description: "Estrutura semântica para páginas acessíveis, organizadas e mais fáceis de manter."
-  },
-  css3: {
-    title: "CSS3",
-    description: "Estilização responsiva e consistente para criar interfaces modernas e legíveis."
-  },
-  responsividade: {
-    title: "Responsividade",
-    description: "Adaptação de layout para celular, tablet e desktop mantendo usabilidade."
-  },
-  "git-github": {
-    title: "Git e GitHub",
-    description: "Versionamento de código, histórico de alterações e publicação de projetos em repositórios."
+    description: "Linguagem para interatividade no frontend e integração com APIs via requisições assíncronas."
   }
 };
 
@@ -383,6 +383,9 @@ function renderProjects() {
       const coverMarkup = project.coverImage
         ? `<img class="project-cover" src="${project.coverImage}" alt="Capa do projeto ${project.name}" loading="lazy">`
         : "";
+      const demoButtonMarkup = project.demoUrl
+        ? `<a class="btn btn-secondary" href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Abrir demo do projeto ${project.name}">Demo</a>`
+        : "";
 
       return `
         <article class="project-card" aria-label="${project.name}">
@@ -400,9 +403,9 @@ function renderProjects() {
             </ul>
 
             <div class="project-actions">
-              <button class="btn btn-secondary project-details-btn" type="button" data-project-id="${project.id}">Ver detalhes</button>
-              <!-- Troque "githubUrl" no server/data/projects.json quando criar o repositório específico deste projeto -->
-              <a class="btn btn-primary" href="${project.githubUrl}" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="btn btn-primary" href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" aria-label="Abrir código do projeto ${project.name}">Código</a>
+              ${demoButtonMarkup}
+              <button class="btn btn-secondary project-details-btn" type="button" data-project-id="${project.id}" aria-label="Ver detalhes do projeto ${project.name}">Detalhes</button>
             </div>
           </div>
         </article>
@@ -457,14 +460,16 @@ function openProjectModal(projectId, triggerElement = null) {
 
   if (project.demoUrl) {
     modalProjectLink.href = project.demoUrl;
-    modalProjectLink.textContent = "Abrir demo";
+    modalProjectLink.textContent = "Demo";
+    modalProjectLink.hidden = false;
   } else {
-    const fallbackBase = resolvedApiBase || API_BASE_CANDIDATES[0] || "/api";
-    modalProjectLink.href = buildApiUrl(fallbackBase, `projects/${project.id}`);
-    modalProjectLink.textContent = "Ver detalhes (JSON)";
+    modalProjectLink.href = "#";
+    modalProjectLink.textContent = "Demo";
+    modalProjectLink.hidden = true;
   }
 
   modalGithubLink.href = project.githubUrl;
+  modalGithubLink.textContent = "Código";
 
   modal.hidden = false;
   document.body.style.overflow = "hidden";
@@ -490,7 +495,8 @@ function sanitizeProjects(data) {
     nextSteps: Array.isArray(project.nextSteps) && project.nextSteps.length
       ? project.nextSteps
       : ["Adicionar próximos passos deste case conforme roadmap de evolução."],
-    githubUrl: project.githubUrl || "https://github.com/iikxwl"
+    githubUrl: project.githubUrl || REPOSITORY_URL,
+    demoUrl: project.demoUrl || null
   }));
 }
 
@@ -820,9 +826,9 @@ function setupTerminalTyping() {
   }
 
   const lines = [
-    "api online",
-    "database mode: json",
-    "ready for requests"
+    "backend focus active",
+    "python roadmap in progress",
+    "api studies running"
   ];
 
   let currentLine = 0;
@@ -886,4 +892,5 @@ function init() {
 }
 
 init();
+
 

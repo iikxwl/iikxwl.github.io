@@ -2,22 +2,22 @@
   {
     "id": "api-001",
     "code": "API-001",
-    "name": "API de Gerenciamento de Usuários",
+    "name": "API de Gerenciamento de Usu\u00e1rios",
     "category": "back-end",
     "categoryLabel": "Back-end",
-    "description": "API REST simples para cadastro, listagem, atualização e remoção de usuários.",
+    "description": "API para cadastro, listagem, atualizacao e remocao de usuarios com organizacao REST.",
     "technologies": [
-      "Node.js",
-      "Express",
+      "Python (planejado)",
+      "FastAPI (planejado)",
       "JavaScript",
       "JSON"
     ],
     "status": "Em desenvolvimento",
     "type": "API REST",
     "coverImage": "assets/images/projects/api-001-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
     "demoUrl": "projects/users-api.html",
-    "details": "Projeto de estudo com foco em organização de rotas REST, validação de entrada e estrutura de dados em JSON.",
+    "details": "Projeto de estudo para praticar estrutura de endpoints, validacao de entrada e organizacao de codigo backend.",
     "features": [
       "GET /api/users",
       "GET /api/users/:id",
@@ -26,9 +26,39 @@
       "DELETE /api/users/:id"
     ],
     "nextSteps": [
-      "Adicionar paginação de resultados.",
-      "Implementar testes automatizados da API.",
-      "Migrar persistência de JSON para banco de dados relacional."
+      "Adicionar persistencia em banco relacional.",
+      "Criar testes automatizados basicos.",
+      "Evoluir para estrutura em camadas."
+    ]
+  },
+  {
+    "id": "auth-004",
+    "code": "AUTH-004",
+    "name": "Sistema de Login Seguro",
+    "category": "back-end",
+    "categoryLabel": "Back-end",
+    "description": "Projeto de autenticacao com foco em validacao de credenciais e fundamentos de seguranca.",
+    "technologies": [
+      "Python (planejado)",
+      "FastAPI (planejado)",
+      "JWT (planejado)",
+      "SQL (planejado)"
+    ],
+    "status": "Planejado",
+    "type": "Autenticacao",
+    "coverImage": "assets/images/projects/auth-004-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
+    "details": "Roadmap de autenticacao segura com hash de senha, JWT e boas praticas de controle de sessao.",
+    "features": [
+      "Validacao de e-mail e senha",
+      "Estrutura para hash de senha",
+      "Fluxo para emissao de token",
+      "Base para autorizacao por perfil"
+    ],
+    "nextSteps": [
+      "Implementar hash de senha com biblioteca adequada.",
+      "Adicionar JWT com expiracao.",
+      "Persistir usuarios e logs de acesso."
     ]
   },
   {
@@ -37,7 +67,7 @@
     "name": "Sistema de Tarefas Full Stack",
     "category": "full-stack",
     "categoryLabel": "Full Stack",
-    "description": "Aplicação de tarefas com front-end integrado ao back-end, permitindo criar, concluir e excluir tarefas.",
+    "description": "Aplicacao de tarefas com frontend integrado ao backend para operacoes CRUD.",
     "technologies": [
       "HTML",
       "CSS",
@@ -45,12 +75,12 @@
       "Node.js",
       "Express"
     ],
-    "status": "Em desenvolvimento",
+    "status": "Funcional",
     "type": "CRUD",
     "coverImage": "assets/images/projects/fullstack-002-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
     "demoUrl": "projects/tasks.html",
-    "details": "Aplicação prática para treinar fluxo CRUD completo, integração por Fetch API e atualização dinâmica da interface.",
+    "details": "Projeto para praticar fluxo completo de criacao, atualizacao e remocao de tarefas com integracao por API.",
     "features": [
       "GET /api/tasks",
       "POST /api/tasks",
@@ -58,70 +88,40 @@
       "DELETE /api/tasks/:id"
     ],
     "nextSteps": [
-      "Adicionar filtro por status (pendente/concluída).",
-      "Adicionar edição do título da tarefa.",
-      "Implementar autenticação por usuário."
+      "Adicionar autenticacao por usuario.",
+      "Criar filtros de busca e status.",
+      "Planejar migracao do backend para Python."
     ]
   },
   {
     "id": "backend-003",
     "code": "BACKEND-003",
-    "name": "API de Contato do Portfólio",
+    "name": "API de Contato do Portf\u00f3lio",
     "category": "back-end",
     "categoryLabel": "Back-end",
-    "description": "Back-end responsável por receber, validar e enviar mensagens do formulário de contato.",
+    "description": "API para receber, validar e processar mensagens enviadas pelo formulario de contato.",
     "technologies": [
       "Node.js",
       "Express",
-      "JavaScript",
+      "Validacao de dados",
       "JSON"
     ],
-    "status": "Concluído",
+    "status": "Funcional",
     "type": "API",
     "coverImage": "assets/images/projects/backend-003-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
     "demoUrl": "projects/contact-api.html",
-    "details": "API para tratamento de mensagens com validação de campos, persistência local e envio automático por SMTP quando configurado.",
+    "details": "Back-end com validacao de campos e resposta padronizada para mensagens de contato.",
     "features": [
       "POST /api/contact",
-      "Validação de campos",
-      "Envio automático de e-mail",
-      "Resposta JSON de sucesso ou erro"
+      "Validacao de campos obrigatorios",
+      "Resposta estruturada de sucesso e erro",
+      "Integracao com formulario do portfolio"
     ],
     "nextSteps": [
-      "Adicionar proteção anti-spam com rate limit.",
-      "Implementar painel administrativo de mensagens.",
-      "Registrar logs de envio de e-mail por mensagem."
-    ]
-  },
-  {
-    "id": "auth-004",
-    "code": "AUTH-004",
-    "name": "Sistema de Login Simples",
-    "category": "back-end",
-    "categoryLabel": "Back-end",
-    "description": "Estrutura inicial de autenticação com validação de campos e simulação segura de login.",
-    "technologies": [
-      "Node.js",
-      "Express",
-      "JavaScript"
-    ],
-    "status": "Em desenvolvimento",
-    "type": "Autenticação",
-    "coverImage": "assets/images/projects/auth-004-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
-    "demoUrl": "projects/login.html",
-    "details": "Demonstração didática de autenticação, sem armazenamento de senha real e com comentários para evolução segura.",
-    "features": [
-      "Validação de campos",
-      "Simulação de login",
-      "Organização de rotas",
-      "Base para futura evolução com JWT e hash"
-    ],
-    "nextSteps": [
-      "Adicionar hash de senha (bcrypt).",
-      "Adicionar autenticação por JWT.",
-      "Persistir usuários em banco de dados."
+      "Adicionar rate limit para protecao anti-spam.",
+      "Registrar logs de requisicoes.",
+      "Planejar migracao para FastAPI."
     ]
   },
   {
@@ -130,63 +130,61 @@
     "name": "Consulta de API Externa",
     "category": "api",
     "categoryLabel": "API",
-    "description": "Projeto que consome uma API pública, trata erros, exibe loading e mostra dados na tela.",
+    "description": "Consumo de API publica com tratamento de erros, estado de carregamento e exibicao de dados.",
     "technologies": [
       "JavaScript",
       "Fetch API",
       "HTML",
       "CSS"
     ],
-    "status": "Em desenvolvimento",
+    "status": "Funcional",
     "type": "Consumo de API",
     "coverImage": "assets/images/projects/api-005-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
     "demoUrl": "projects/api-fetch.html",
-    "details": "Projeto para praticar consumo de API externa com tratamento de erro, controle de estado e renderização de resultados.",
+    "details": "Projeto voltado para integracao com servicos externos e tratamento de cenarios de falha.",
     "features": [
-      "Buscar dados de API pública",
-      "Tratar erros de requisição",
-      "Exibir loading",
-      "Mostrar resultado em tela"
+      "Busca de dados por usuario",
+      "Tratamento de erro de requisicao",
+      "Feedback de carregamento",
+      "Renderizacao dinamica de resultados"
     ],
     "nextSteps": [
-      "Adicionar cache simples para evitar chamadas repetidas.",
-      "Adicionar suporte a múltiplas APIs públicas.",
-      "Melhorar acessibilidade na exibição dos resultados."
+      "Adicionar cache local para reduzir chamadas.",
+      "Melhorar estados de erro para acessibilidade.",
+      "Criar versao em Python para automacao."
     ]
   },
   {
     "id": "portfolio-006",
     "code": "PORTFOLIO-006",
-    "name": "Portfólio Full Stack",
+    "name": "Portf\u00f3lio Pessoal",
     "category": "full-stack",
     "categoryLabel": "Full Stack",
-    "description": "Portfólio pessoal com front-end responsivo, back-end funcional, projetos dinâmicos, currículo online ATS-friendly e formulário conectado à API.",
+    "description": "Portfolio profissional com foco em backend, projetos praticos e curriculo online ATS-friendly.",
     "technologies": [
       "HTML",
       "CSS",
       "JavaScript",
       "Node.js",
-      "Express"
+      "Python (planejado)"
     ],
     "status": "Em desenvolvimento",
     "type": "Projeto pessoal",
     "coverImage": "assets/images/projects/portfolio-006-cover.jpg",
-    "githubUrl": "https://github.com/iikxwl",
+    "githubUrl": "https://github.com/iikxwl/iikxwl.github.io",
     "demoUrl": "index.html",
-    "details": "Projeto central reunindo arquitetura front-end + back-end, integração por API e apresentação profissional de estudos práticos.",
+    "details": "Projeto central para consolidar estudos de backend, integracao de APIs e comunicacao profissional.",
     "features": [
-      "Front-end responsivo",
-      "Back-end funcional",
-      "API de projetos",
-      "Formulário conectado ao back-end",
-      "Currículo online ATS-friendly"
+      "Layout responsivo",
+      "Secao de projetos dinamica",
+      "Curriculo online organizado",
+      "Contato integrado ao backend"
     ],
     "nextSteps": [
-      "Adicionar testes de integração das rotas principais.",
-      "Publicar versão em ambiente de hospedagem.",
-      "Organizar roadmap público de evolução no GitHub."
+      "Adicionar secao tecnica para roadmap em Python.",
+      "Melhorar cobertura de acessibilidade.",
+      "Publicar atualizacoes continuas no GitHub."
     ]
   }
 ]
-

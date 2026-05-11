@@ -3,36 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currículo Online | Christian Batista</title>
+  <meta name="description" content="Currículo online ATS-friendly de Christian Batista.">
+  <title>Currículo | Christian Batista</title>
   <style>
     :root {
-      --bg: #050b12;
-      --panel: #0d1a27;
-      --line: #2a4e66;
-      --text: #e8faff;
-      --muted: #9ac2cc;
-      --accentA: #00e5ff;
-      --accentB: #00ff88;
+      --bg: #f5f7fa;
+      --paper: #ffffff;
+      --text: #101828;
+      --muted: #475467;
+      --line: #d0d5dd;
+      --accent: #0b6cff;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       padding: 24px;
-      background: radial-gradient(circle at top, #0a1f2d, #050b12 58%);
+      background: var(--bg);
       color: var(--text);
       font-family: "Segoe UI", Arial, sans-serif;
       line-height: 1.6;
     }
 
-    .resume-shell {
-      width: min(980px, 100%);
+    .resume {
+      width: min(920px, 100%);
       margin: 0 auto;
+      background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(13, 26, 39, 0.95);
-      padding: 22px;
+      border-radius: 10px;
+      padding: 28px;
     }
 
     .actions {
@@ -47,39 +49,37 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      border-radius: 999px;
-      border: 1px solid #3a6782;
-      background: #102030;
+      padding: 0.56rem 0.95rem;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
       color: var(--text);
-      padding: 0.56rem 0.96rem;
-      cursor: pointer;
       font: inherit;
+      cursor: pointer;
     }
 
     .btn.primary {
-      border: 0;
-      color: #00261a;
-      font-weight: 700;
-      background: linear-gradient(120deg, var(--accentA), var(--accentB));
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
     }
 
-    header h1 {
+    h1 {
       margin: 0;
       font-size: clamp(1.7rem, 3vw, 2.2rem);
+      line-height: 1.2;
     }
 
     .headline {
-      margin: 6px 0 14px;
-      color: #c4ebf6;
-      font-size: 1.06rem;
+      margin: 6px 0 10px;
+      color: var(--muted);
+      font-size: 1.02rem;
     }
 
-    .contact-lines p {
-      margin: 4px 0;
-    }
-
-    .contact-lines a {
-      color: #cbf5ff;
+    .contact-inline {
+      margin: 0;
+      color: var(--muted);
       word-break: break-word;
     }
 
@@ -89,8 +89,8 @@
 
     h2 {
       margin: 0 0 10px;
-      font-size: 1.28rem;
-      border-bottom: 1px solid #325a74;
+      font-size: 1.18rem;
+      border-bottom: 1px solid var(--line);
       padding-bottom: 6px;
     }
 
@@ -98,16 +98,13 @@
       margin: 0 0 10px;
     }
 
-    ul,
-    ol {
+    ul {
       margin: 0;
-      padding-left: 22px;
+      padding-left: 20px;
     }
 
-    li { margin-bottom: 6px; }
-
-    .project-item {
-      margin-bottom: 12px;
+    li {
+      margin-bottom: 6px;
     }
 
     .project-item strong {
@@ -116,27 +113,35 @@
     }
 
     .note {
-      margin-top: 20px;
-      border: 1px solid #35627d;
-      border-radius: 10px;
-      background: #0a1723;
-      padding: 12px;
-      color: #d2f4ff;
+      margin-top: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+
+      .resume {
+        padding: 18px;
+      }
     }
 
     @media print {
       body {
-        background: #ffffff;
-        color: #000000;
         padding: 0;
+        background: #ffffff;
       }
 
-      .resume-shell {
+      .resume {
         width: 100%;
         border: 0;
         border-radius: 0;
-        background: #ffffff;
-        color: #000000;
         padding: 0;
       }
 
@@ -144,131 +149,109 @@
         display: none;
       }
 
-      h2 {
-        border-bottom: 1px solid #000000;
-      }
-
       a {
         color: #000000;
         text-decoration: none;
-      }
-
-      .note {
-        border: 1px solid #000000;
-        background: #ffffff;
-        color: #000000;
       }
     }
   </style>
 </head>
 <body>
-  <main class="resume-shell">
+  <main class="resume">
     <div class="actions" aria-label="Ações do currículo">
       <button class="btn primary" type="button" onclick="window.print()">Imprimir / Salvar PDF</button>
       <a class="btn" href="index.html">Voltar ao portfólio</a>
       <a class="btn" href="assets/cv/Christian-Batista-CV.pdf" download="Christian-Batista-CV.pdf">Baixar CV</a>
-      <a class="btn" href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
 
     <header>
       <h1>Christian Batista</h1>
-      <p class="headline">Desenvolvedor Full Stack Júnior | Foco em Back-end | Node.js | JavaScript</p>
-
-      <div class="contact-lines">
-        <p><strong>E-mail:</strong> Christian.abatista07@gmail.com</p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">https://github.com/iikxwl</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/christianabatista/</a></p>
-        <!-- CIDADE/ESTADO: ajuste aqui -->
-        <p><strong>Cidade/Estado:</strong> [SUA CIDADE - SEU ESTADO]</p>
-      </div>
+      <p class="headline">Desenvolvedor Backend em formação | Python • APIs • Segurança</p>
+      <p class="contact-inline"><strong>E-mail:</strong> Christian.abatista07@gmail.com</p>
+      <p class="contact-inline"><strong>GitHub:</strong> <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">https://github.com/iikxwl</a></p>
+      <p class="contact-inline"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/christianabatista/</a></p>
     </header>
 
-    <section aria-labelledby="resumo-title">
-      <h2 id="resumo-title">Resumo profissional</h2>
+    <section aria-labelledby="objetivo-title">
+      <h2 id="objetivo-title">Objetivo profissional</h2>
       <p>
-        Desenvolvedor Full Stack Júnior em formação, com foco em Back-end e conhecimentos em JavaScript, Node.js,
-        Express, APIs REST, HTML, CSS, Git e GitHub. Experiência prática em projetos de estudo envolvendo CRUD,
-        integração entre front-end e back-end, validação de formulários, consumo de APIs e organização de código.
-        Busco uma oportunidade inicial na área de tecnologia para aplicar meus conhecimentos, evoluir tecnicamente e
-        contribuir com soluções digitais eficientes.
+        Atuar como desenvolvedor backend júnior, contribuindo com APIs, automações e sistemas web,
+        enquanto evoluo tecnicamente em Python, banco de dados, autenticação e segurança de aplicações.
+      </p>
+    </section>
+
+    <section aria-labelledby="resumo-title">
+      <h2 id="resumo-title">Resumo</h2>
+      <p>
+        Estudante de tecnologia e desenvolvedor backend em formação. Foco em Python, APIs REST,
+        automações e fundamentos de cibersegurança. Desenvolvo projetos práticos para consolidar
+        lógica de programação, integração de sistemas, organização de código e boas práticas.
       </p>
     </section>
 
     <section aria-labelledby="skills-title">
-      <h2 id="skills-title">Competências técnicas</h2>
-      <!-- TECNOLOGIAS: ajuste e priorize conforme vaga -->
+      <h2 id="skills-title">Habilidades técnicas</h2>
       <ul>
-        <li>JavaScript</li>
-        <li>Node.js</li>
-        <li>Express.js</li>
+        <li>Python</li>
+        <li>FastAPI</li>
         <li>APIs REST</li>
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>Git</li>
-        <li>GitHub</li>
-        <li>Lógica de programação</li>
-        <li>CRUD</li>
-        <li>JSON</li>
-        <li>Fetch API</li>
-        <li>Validação de formulários</li>
-        <li>Responsividade</li>
-        <li>Noções de banco de dados</li>
-        <li>Noções de autenticação</li>
-        <li>Boas práticas de código</li>
+        <li>JWT</li>
+        <li>SQL</li>
+        <li>Git/GitHub</li>
+        <li>Linux</li>
+        <li>Segurança Web Básica</li>
+        <li>Discord.py</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
       </ul>
     </section>
 
     <section aria-labelledby="projects-title">
       <h2 id="projects-title">Projetos</h2>
-      <!-- LINKS DOS REPOSITÓRIOS: trocar pelos links específicos quando publicar -->
-      <ol>
+      <ul>
         <li class="project-item">
           <strong>API de Gerenciamento de Usuários</strong>
-          API REST para cadastro, listagem, atualização e remoção de usuários, usando Node.js, Express e armazenamento em JSON.
+          API para operações CRUD de usuários e organização de endpoints REST.
+        </li>
+        <li class="project-item">
+          <strong>Sistema de Login Seguro</strong>
+          Projeto de autenticação com roadmap de hash de senha, JWT e controle de acesso.
         </li>
         <li class="project-item">
           <strong>Sistema de Tarefas Full Stack</strong>
-          Aplicação CRUD com front-end integrado ao back-end, permitindo criar, listar, concluir e excluir tarefas.
+          Aplicação de tarefas com frontend integrado ao backend e operações CRUD.
         </li>
         <li class="project-item">
           <strong>API de Contato do Portfólio</strong>
-          API para validação, armazenamento e envio automático de mensagens do formulário de contato.
+          API para validação e processamento de mensagens do formulário de contato.
         </li>
         <li class="project-item">
-          <strong>Portfólio Full Stack</strong>
-          Portfólio pessoal com front-end responsivo, back-end em Node.js, API de projetos, formulário funcional e currículo online.
+          <strong>Consulta de API Externa</strong>
+          Consumo de API pública com tratamento de erros e renderização dinâmica.
         </li>
-      </ol>
+        <li class="project-item">
+          <strong>Portfólio Pessoal</strong>
+          Portfólio com foco em backend, currículo online ATS-friendly e seção de projetos dinâmica.
+        </li>
+      </ul>
     </section>
 
     <section aria-labelledby="education-title">
-      <h2 id="education-title">Formação acadêmica</h2>
-      <!-- FORMACAO: preencher com curso, instituição e período -->
-      <p>[ADICIONE SUA FORMAÇÃO]</p>
+      <h2 id="education-title">Formação</h2>
+      <p>Estudante de tecnologia com trilha prática em desenvolvimento backend e fundamentos de segurança.</p>
     </section>
 
-    <section aria-labelledby="courses-title">
-      <h2 id="courses-title">Cursos e certificações</h2>
-      <!-- CURSOS/CERTIFICACOES: preencher com nome do curso e plataforma -->
-      <p>[ADICIONE SEUS CURSOS]</p>
-    </section>
-
-    <section aria-labelledby="experience-title">
-      <h2 id="experience-title">Experiência profissional</h2>
-      <!-- EXPERIENCIAS: preencher com atividades profissionais e/ou projetos práticos -->
-      <p>[ADICIONE SUAS EXPERIÊNCIAS OU PROJETOS PRÁTICOS]</p>
-    </section>
-
-    <section aria-labelledby="language-title">
-      <h2 id="language-title">Idiomas</h2>
-      <!-- IDIOMAS: preencher com nível -->
-      <p>[ADICIONE SEU NÍVEL DE IDIOMA]</p>
+    <section aria-labelledby="contact-title">
+      <h2 id="contact-title">Contato</h2>
+      <p><strong>E-mail:</strong> Christian.abatista07@gmail.com</p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">https://github.com/iikxwl</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/christianabatista/</a></p>
     </section>
 
     <p class="note">
-      Este currículo foi estruturado em formato ATS-friendly: uma coluna, títulos claros, texto selecionável e palavras-chave técnicas relevantes para vagas de tecnologia.
+      Currículo em formato ATS-friendly: texto selecionável, layout em coluna única e seções claras.
     </p>
   </main>
 </body>
 </html>
-
