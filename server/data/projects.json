@@ -1,0 +1,192 @@
+[
+  {
+    "id": "api-001",
+    "code": "API-001",
+    "name": "API de Gerenciamento de Usuários",
+    "category": "back-end",
+    "categoryLabel": "Back-end",
+    "description": "API REST simples para cadastro, listagem, atualização e remoção de usuários.",
+    "technologies": [
+      "Node.js",
+      "Express",
+      "JavaScript",
+      "JSON"
+    ],
+    "status": "Em desenvolvimento",
+    "type": "API REST",
+    "coverImage": "assets/images/projects/api-001-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "projects/users-api.html",
+    "details": "Projeto de estudo com foco em organização de rotas REST, validação de entrada e estrutura de dados em JSON.",
+    "features": [
+      "GET /api/users",
+      "GET /api/users/:id",
+      "POST /api/users",
+      "PUT /api/users/:id",
+      "DELETE /api/users/:id"
+    ],
+    "nextSteps": [
+      "Adicionar paginação de resultados.",
+      "Implementar testes automatizados da API.",
+      "Migrar persistência de JSON para banco de dados relacional."
+    ]
+  },
+  {
+    "id": "fullstack-002",
+    "code": "FULLSTACK-002",
+    "name": "Sistema de Tarefas Full Stack",
+    "category": "full-stack",
+    "categoryLabel": "Full Stack",
+    "description": "Aplicação de tarefas com front-end integrado ao back-end, permitindo criar, concluir e excluir tarefas.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express"
+    ],
+    "status": "Em desenvolvimento",
+    "type": "CRUD",
+    "coverImage": "assets/images/projects/fullstack-002-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "projects/tasks.html",
+    "details": "Aplicação prática para treinar fluxo CRUD completo, integração por Fetch API e atualização dinâmica da interface.",
+    "features": [
+      "GET /api/tasks",
+      "POST /api/tasks",
+      "PATCH /api/tasks/:id",
+      "DELETE /api/tasks/:id"
+    ],
+    "nextSteps": [
+      "Adicionar filtro por status (pendente/concluída).",
+      "Adicionar edição do título da tarefa.",
+      "Implementar autenticação por usuário."
+    ]
+  },
+  {
+    "id": "backend-003",
+    "code": "BACKEND-003",
+    "name": "API de Contato do Portfólio",
+    "category": "back-end",
+    "categoryLabel": "Back-end",
+    "description": "Back-end responsável por receber, validar e enviar mensagens do formulário de contato.",
+    "technologies": [
+      "Node.js",
+      "Express",
+      "JavaScript",
+      "JSON"
+    ],
+    "status": "Concluído",
+    "type": "API",
+    "coverImage": "assets/images/projects/backend-003-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "projects/contact-api.html",
+    "details": "API para tratamento de mensagens com validação de campos, persistência local e envio automático por SMTP quando configurado.",
+    "features": [
+      "POST /api/contact",
+      "Validação de campos",
+      "Envio automático de e-mail",
+      "Resposta JSON de sucesso ou erro"
+    ],
+    "nextSteps": [
+      "Adicionar proteção anti-spam com rate limit.",
+      "Implementar painel administrativo de mensagens.",
+      "Registrar logs de envio de e-mail por mensagem."
+    ]
+  },
+  {
+    "id": "auth-004",
+    "code": "AUTH-004",
+    "name": "Sistema de Login Simples",
+    "category": "back-end",
+    "categoryLabel": "Back-end",
+    "description": "Estrutura inicial de autenticação com validação de campos e simulação segura de login.",
+    "technologies": [
+      "Node.js",
+      "Express",
+      "JavaScript"
+    ],
+    "status": "Em desenvolvimento",
+    "type": "Autenticação",
+    "coverImage": "assets/images/projects/auth-004-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "projects/login.html",
+    "details": "Demonstração didática de autenticação, sem armazenamento de senha real e com comentários para evolução segura.",
+    "features": [
+      "Validação de campos",
+      "Simulação de login",
+      "Organização de rotas",
+      "Base para futura evolução com JWT e hash"
+    ],
+    "nextSteps": [
+      "Adicionar hash de senha (bcrypt).",
+      "Adicionar autenticação por JWT.",
+      "Persistir usuários em banco de dados."
+    ]
+  },
+  {
+    "id": "api-005",
+    "code": "API-005",
+    "name": "Consulta de API Externa",
+    "category": "api",
+    "categoryLabel": "API",
+    "description": "Projeto que consome uma API pública, trata erros, exibe loading e mostra dados na tela.",
+    "technologies": [
+      "JavaScript",
+      "Fetch API",
+      "HTML",
+      "CSS"
+    ],
+    "status": "Em desenvolvimento",
+    "type": "Consumo de API",
+    "coverImage": "assets/images/projects/api-005-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "projects/api-fetch.html",
+    "details": "Projeto para praticar consumo de API externa com tratamento de erro, controle de estado e renderização de resultados.",
+    "features": [
+      "Buscar dados de API pública",
+      "Tratar erros de requisição",
+      "Exibir loading",
+      "Mostrar resultado em tela"
+    ],
+    "nextSteps": [
+      "Adicionar cache simples para evitar chamadas repetidas.",
+      "Adicionar suporte a múltiplas APIs públicas.",
+      "Melhorar acessibilidade na exibição dos resultados."
+    ]
+  },
+  {
+    "id": "portfolio-006",
+    "code": "PORTFOLIO-006",
+    "name": "Portfólio Full Stack",
+    "category": "full-stack",
+    "categoryLabel": "Full Stack",
+    "description": "Portfólio pessoal com front-end responsivo, back-end funcional, projetos dinâmicos, currículo online ATS-friendly e formulário conectado à API.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express"
+    ],
+    "status": "Em desenvolvimento",
+    "type": "Projeto pessoal",
+    "coverImage": "assets/images/projects/portfolio-006-cover.jpg",
+    "githubUrl": "https://github.com/iikxwl",
+    "demoUrl": "index.html",
+    "details": "Projeto central reunindo arquitetura front-end + back-end, integração por API e apresentação profissional de estudos práticos.",
+    "features": [
+      "Front-end responsivo",
+      "Back-end funcional",
+      "API de projetos",
+      "Formulário conectado ao back-end",
+      "Currículo online ATS-friendly"
+    ],
+    "nextSteps": [
+      "Adicionar testes de integração das rotas principais.",
+      "Publicar versão em ambiente de hospedagem.",
+      "Organizar roadmap público de evolução no GitHub."
+    ]
+  }
+]
+

@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FULLSTACK-002 | Sistema de Tarefas Full Stack</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: #101820;
+      --line: #24455c;
+      --green: #00ff88;
+      --cyan: #00e5ff;
+      --text: #e8faff;
+      --muted: #93c2ce;
+      --danger: #ff7f7f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0a1d2b, #050b12 58%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { width: min(900px, 100%); margin: 0 auto; }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .top-actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.48rem 0.82rem;
+      color: var(--text);
+      text-decoration: none;
+      background: #0c1724;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(16, 24, 32, 0.93);
+      padding: 18px;
+    }
+    h1 { margin-top: 0; }
+    .subtitle { color: var(--muted); }
+    .status { min-height: 1.2em; margin-bottom: 10px; color: var(--muted); }
+    .task-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #07101a;
+      color: var(--text);
+      padding: 0.72rem 0.8rem;
+    }
+    button {
+      border-radius: 999px;
+      border: 1px solid #2f5e7b;
+      background: #0d1b29;
+      color: var(--text);
+      padding: 0.56rem 0.86rem;
+      cursor: pointer;
+    }
+    button.primary {
+      border: 0;
+      background: linear-gradient(120deg, var(--green), var(--cyan));
+      color: #00251a;
+      font-weight: 700;
+    }
+    ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    li {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      background: #0b1420;
+    }
+    .task-title.done { text-decoration: line-through; color: var(--muted); }
+    .empty { color: var(--muted); }
+    .danger { border-color: #7d3737; color: var(--danger); }
+
+    @media (max-width: 700px) {
+      .task-form { grid-template-columns: 1fr; }
+      li { grid-template-columns: 1fr; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="top-actions">
+      <a href="../index.html#projetos">Voltar ao portfólio</a>
+      <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+    </div>
+
+    <section class="panel">
+      <h1>[FULLSTACK-002] Sistema de Tarefas Full Stack</h1>
+      <p class="subtitle">Integração real com back-end Node.js/Express e persistência em JSON.</p>
+
+      <p id="status" class="status" aria-live="polite">Carregando tarefas...</p>
+
+      <form id="task-form" class="task-form" novalidate>
+        <input id="task-title" name="title" type="text" required minlength="2" placeholder="Digite uma tarefa">
+        <button class="primary" id="task-submit" type="submit">Adicionar tarefa</button>
+      </form>
+
+      <ul id="task-list" aria-live="polite"></ul>
+      <p id="empty" class="empty" hidden>Nenhuma tarefa cadastrada.</p>
+    </section>
+  </main>
+
+  <script>
+    const API = "/api/tasks";
+    const statusEl = document.getElementById("status");
+    const form = document.getElementById("task-form");
+    const input = document.getElementById("task-title");
+    const submitButton = document.getElementById("task-submit");
+    const list = document.getElementById("task-list");
+    const empty = document.getElementById("empty");
+
+    let tasks = [];
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.style.color = isError ? "#ffb5b5" : "#93c2ce";
+    }
+
+    function render() {
+      list.innerHTML = "";
+      empty.hidden = tasks.length > 0;
+
+      tasks.forEach((task) => {
+        const item = document.createElement("li");
+
+        const title = document.createElement("span");
+        title.className = `task-title ${task.done ? "done" : ""}`;
+        title.textContent = task.title;
+
+        const toggleButton = document.createElement("button");
+        toggleButton.type = "button";
+        toggleButton.textContent = task.done ? "Reabrir" : "Concluir";
+        toggleButton.addEventListener("click", () => toggleTask(task.id, !task.done));
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Excluir";
+        deleteButton.className = "danger";
+        deleteButton.addEventListener("click", () => deleteTask(task.id));
+
+        item.append(title, toggleButton, deleteButton);
+        list.appendChild(item);
+      });
+    }
+
+    async function loadTasks() {
+      setStatus("Carregando tarefas...");
+      try {
+        const response = await fetch(API);
+        if (!response.ok) {
+          throw new Error("Falha ao carregar tarefas.");
+        }
+        tasks = await response.json();
+        render();
+        setStatus("Tarefas carregadas com sucesso.");
+      } catch (error) {
+        setStatus("Erro ao carregar tarefas. Verifique o servidor.", true);
+      }
+    }
+
+    async function createTask(title) {
+      const response = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Erro ao criar tarefa.");
+      }
+
+      return data.data;
+    }
+
+    async function toggleTask(id, done) {
+      try {
+        setStatus("Atualizando tarefa...");
+        const response = await fetch(`${API}/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ done })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || "Erro ao atualizar tarefa.");
+        }
+
+        tasks = tasks.map((task) => (task.id === id ? data.data : task));
+        render();
+        setStatus("Tarefa atualizada.");
+      } catch (error) {
+        setStatus(error.message, true);
+      }
+    }
+
+    async function deleteTask(id) {
+      try {
+        setStatus("Excluindo tarefa...");
+        const response = await fetch(`${API}/${id}`, { method: "DELETE" });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || "Erro ao excluir tarefa.");
+        }
+
+        tasks = tasks.filter((task) => task.id !== id);
+        render();
+        setStatus("Tarefa removida.");
+      } catch (error) {
+        setStatus(error.message, true);
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const title = input.value.trim();
+
+      if (title.length < 2) {
+        setStatus("Digite uma tarefa com pelo menos 2 caracteres.", true);
+        input.focus();
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Salvando...";
+
+      try {
+        const newTask = await createTask(title);
+        tasks.push(newTask);
+        render();
+        form.reset();
+        input.focus();
+        setStatus("Tarefa criada com sucesso.");
+      } catch (error) {
+        setStatus(error.message, true);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Adicionar tarefa";
+      }
+    });
+
+    loadTasks();
+  </script>
+</body>
+</html>

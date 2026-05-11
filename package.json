@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-fullstack-christian",
+  "version": "1.0.0",
+  "description": "Portfolio Full Stack com front-end cyber e back-end Node.js/Express.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "node server/app.js"
+  },
+  "keywords": [
+    "portfolio",
+    "fullstack",
+    "backend",
+    "nodejs",
+    "express"
+  ],
+  "author": "Christian Batista",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^8.0.7"
+  }
+}

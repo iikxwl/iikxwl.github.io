@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API-005 | Consulta de API Externa</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: #101820;
+      --line: #27485f;
+      --green: #00ff88;
+      --cyan: #00e5ff;
+      --text: #e8faff;
+      --muted: #97c2cf;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0a1f2d, #050b12 60%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { width: min(820px, 100%); margin: 0 auto; }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .top-actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.48rem 0.84rem;
+      color: var(--text);
+      text-decoration: none;
+      background: #0d1a26;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(16, 24, 32, 0.93);
+      padding: 18px;
+    }
+    h1 { margin-top: 0; }
+    .subtitle { color: var(--muted); }
+    .form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #07101a;
+      color: var(--text);
+      padding: 0.7rem 0.82rem;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--green), var(--cyan));
+      color: #00271b;
+      font-weight: 700;
+      padding: 0.62rem 0.92rem;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.75; cursor: not-allowed; }
+    .status { min-height: 1.2em; color: var(--muted); margin-bottom: 8px; }
+    .error { color: #ffbcbc; }
+    .result {
+      border: 1px solid #20415a;
+      border-radius: 10px;
+      padding: 12px;
+      background: #0b1520;
+      display: grid;
+      gap: 6px;
+    }
+    .result img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid #2d536d;
+    }
+    @media (max-width: 640px) {
+      .form { grid-template-columns: 1fr; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="top-actions">
+      <a href="../index.html#projetos">Voltar ao portfólio</a>
+      <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+    </div>
+
+    <section class="panel">
+      <h1>[API-005] Consulta de API Externa</h1>
+      <p class="subtitle">Consumo da API pública do GitHub com loading, tratamento de erro e exibição de dados.</p>
+
+      <form id="fetch-form" class="form" novalidate>
+        <input id="username" type="text" value="iikxwl" placeholder="Usuário do GitHub">
+        <button id="fetch-button" type="submit">Buscar</button>
+      </form>
+
+      <p id="status" class="status" aria-live="polite"></p>
+      <div id="result" class="result" hidden></div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("fetch-form");
+    const usernameInput = document.getElementById("username");
+    const fetchButton = document.getElementById("fetch-button");
+    const statusEl = document.getElementById("status");
+    const resultEl = document.getElementById("result");
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.classList.toggle("error", isError);
+    }
+
+    function renderResult(user) {
+      resultEl.hidden = false;
+      resultEl.innerHTML = `
+        <img src="${user.avatar_url}" alt="Avatar de ${user.login}">
+        <strong>${user.name || user.login}</strong>
+        <span>Usuário: ${user.login}</span>
+        <span>Repositórios públicos: ${user.public_repos}</span>
+        <span>Seguidores: ${user.followers}</span>
+        <a href="${user.html_url}" target="_blank" rel="noopener noreferrer">Abrir perfil no GitHub</a>
+      `;
+    }
+
+    async function fetchUser(username) {
+      const response = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
+      if (!response.ok) {
+        throw new Error("Usuário não encontrado na API pública.");
+      }
+      return response.json();
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const username = usernameInput.value.trim();
+
+      if (!username) {
+        setStatus("Informe um usuário para consulta.", true);
+        return;
+      }
+
+      fetchButton.disabled = true;
+      fetchButton.textContent = "Carregando...";
+      resultEl.hidden = true;
+      setStatus("Consultando API externa...");
+
+      try {
+        const user = await fetchUser(username);
+        renderResult(user);
+        setStatus("Consulta concluída com sucesso.");
+      } catch (error) {
+        setStatus(error.message || "Falha ao consultar API externa.", true);
+      } finally {
+        fetchButton.disabled = false;
+        fetchButton.textContent = "Buscar";
+      }
+    });
+
+    form.dispatchEvent(new Event("submit"));
+  </script>
+</body>
+</html>

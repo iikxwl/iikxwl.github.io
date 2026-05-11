@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API-001 | API de Gerenciamento de Usuários</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: #101820;
+      --line: #25455d;
+      --green: #00ff88;
+      --cyan: #00e5ff;
+      --text: #e8faff;
+      --muted: #95c2cd;
+      --danger: #ff8f8f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0a1f2d, #050b12 60%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { width: min(980px, 100%); margin: 0 auto; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .top-actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #0d1a26;
+      padding: 0.46rem 0.82rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(16, 24, 32, 0.93);
+      padding: 18px;
+    }
+    h1 { margin-top: 0; }
+    .subtitle { color: var(--muted); }
+    .status { min-height: 1.2em; margin-bottom: 10px; color: var(--muted); }
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #07101a;
+      color: var(--text);
+      padding: 0.7rem 0.8rem;
+    }
+    button {
+      border-radius: 999px;
+      border: 1px solid #2f5d7a;
+      background: #0d1a28;
+      color: var(--text);
+      padding: 0.54rem 0.84rem;
+      cursor: pointer;
+    }
+    button.primary {
+      border: 0;
+      background: linear-gradient(120deg, var(--green), var(--cyan));
+      color: #002419;
+      font-weight: 700;
+    }
+    button.danger { border-color: #7a3b3b; color: var(--danger); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #1d3242;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: #a8d9e5; font-weight: 600; }
+    tr:last-child td { border-bottom: 0; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .form { grid-template-columns: 1fr; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      td { border-bottom: 1px solid #1d3242; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="top-actions">
+      <a href="../index.html#projetos">Voltar ao portfólio</a>
+      <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+    </div>
+
+    <section class="panel">
+      <h1>[API-001] API de Gerenciamento de Usuários</h1>
+      <p class="subtitle">Demonstração das rotas GET/POST/PUT/DELETE da API de usuários.</p>
+      <p id="status" class="status" aria-live="polite">Carregando usuários...</p>
+
+      <form id="user-form" class="form" novalidate>
+        <input id="user-name" name="name" type="text" placeholder="Nome" required minlength="2">
+        <input id="user-email" name="email" type="email" placeholder="E-mail" required>
+        <button id="user-submit" class="primary" type="submit">Criar usuário</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="users-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const API = "/api/users";
+    const statusEl = document.getElementById("status");
+    const form = document.getElementById("user-form");
+    const nameInput = document.getElementById("user-name");
+    const emailInput = document.getElementById("user-email");
+    const submitButton = document.getElementById("user-submit");
+    const usersBody = document.getElementById("users-body");
+
+    let users = [];
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.style.color = isError ? "#ffbdbd" : "#95c2cd";
+    }
+
+    function renderUsers() {
+      usersBody.innerHTML = "";
+
+      if (!users.length) {
+        usersBody.innerHTML = `<tr><td colspan="4">Nenhum usuário cadastrado.</td></tr>`;
+        return;
+      }
+
+      users.forEach((user) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>
+            <div class="actions">
+              <button type="button" data-action="view" data-id="${user.id}">GET /:id</button>
+              <button type="button" data-action="edit" data-id="${user.id}">PUT</button>
+              <button class="danger" type="button" data-action="delete" data-id="${user.id}">DELETE</button>
+            </div>
+          </td>
+        `;
+
+        usersBody.appendChild(row);
+      });
+    }
+
+    async function fetchUsers() {
+      setStatus("Carregando usuários...");
+      try {
+        const response = await fetch(API);
+        if (!response.ok) throw new Error("Falha ao carregar usuários.");
+        users = await response.json();
+        renderUsers();
+        setStatus("Usuários carregados com sucesso.");
+      } catch (error) {
+        setStatus("Erro ao carregar usuários.", true);
+      }
+    }
+
+    async function createUser(name, email) {
+      const response = await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Erro ao criar usuário.");
+      return data.data;
+    }
+
+    async function updateUser(id, name, email) {
+      const response = await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Erro ao atualizar usuário.");
+      return data.data;
+    }
+
+    async function deleteUser(id) {
+      const response = await fetch(`${API}/${id}`, { method: "DELETE" });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Erro ao remover usuário.");
+    }
+
+    async function viewUser(id) {
+      const response = await fetch(`${API}/${id}`);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Erro ao buscar usuário.");
+      alert(`ID: ${data.id}\nNome: ${data.name}\nE-mail: ${data.email}`);
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+
+      if (name.length < 2) {
+        setStatus("Nome deve ter pelo menos 2 caracteres.", true);
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setStatus("Informe um e-mail válido.", true);
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Salvando...";
+
+      try {
+        const created = await createUser(name, email);
+        users.push(created);
+        renderUsers();
+        form.reset();
+        setStatus("Usuário criado com sucesso.");
+      } catch (error) {
+        setStatus(error.message, true);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Criar usuário";
+      }
+    });
+
+    usersBody.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const action = target.dataset.action;
+      const id = Number(target.dataset.id);
+      if (!action || !id) return;
+
+      try {
+        if (action === "view") {
+          await viewUser(id);
+          return;
+        }
+
+        if (action === "edit") {
+          const current = users.find((user) => user.id === id);
+          if (!current) return;
+
+          const newName = prompt("Novo nome:", current.name);
+          if (newName === null) return;
+          const newEmail = prompt("Novo e-mail:", current.email);
+          if (newEmail === null) return;
+
+          const updated = await updateUser(id, newName.trim(), newEmail.trim());
+          users = users.map((user) => (user.id === id ? updated : user));
+          renderUsers();
+          setStatus("Usuário atualizado com sucesso.");
+          return;
+        }
+
+        if (action === "delete") {
+          const confirmed = confirm("Deseja remover este usuário?");
+          if (!confirmed) return;
+
+          await deleteUser(id);
+          users = users.filter((user) => user.id !== id);
+          renderUsers();
+          setStatus("Usuário removido com sucesso.");
+        }
+      } catch (error) {
+        setStatus(error.message, true);
+      }
+    });
+
+    fetchUsers();
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<svg width="480" height="480" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar placeholder</title>
+  <desc id="desc">Avatar estilizado para seção sobre.</desc>
+  <rect width="480" height="480" rx="48" fill="#090E1A"/>
+  <circle cx="240" cy="170" r="90" fill="url(#face)"/>
+  <path d="M116 382C116 301.918 180.918 237 261 237H264C344.082 237 409 301.918 409 382V420H116V382Z" fill="url(#body)"/>
+  <circle cx="104" cy="104" r="92" fill="#00CFFF" fill-opacity="0.18"/>
+  <circle cx="398" cy="364" r="84" fill="#8B5CF6" fill-opacity="0.18"/>
+  <defs>
+    <linearGradient id="face" x1="150" y1="80" x2="350" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D3E6FF"/>
+      <stop offset="1" stop-color="#8BA0C0"/>
+    </linearGradient>
+    <linearGradient id="body" x1="116" y1="237" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2D55"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

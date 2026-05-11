@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo Online | Christian Batista</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: #0d1a27;
+      --line: #2a4e66;
+      --text: #e8faff;
+      --muted: #9ac2cc;
+      --accentA: #00e5ff;
+      --accentB: #00ff88;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: radial-gradient(circle at top, #0a1f2d, #050b12 58%);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .resume-shell {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(13, 26, 39, 0.95);
+      padding: 22px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 1px solid #3a6782;
+      background: #102030;
+      color: var(--text);
+      padding: 0.56rem 0.96rem;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn.primary {
+      border: 0;
+      color: #00261a;
+      font-weight: 700;
+      background: linear-gradient(120deg, var(--accentA), var(--accentB));
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+    }
+
+    .headline {
+      margin: 6px 0 14px;
+      color: #c4ebf6;
+      font-size: 1.06rem;
+    }
+
+    .contact-lines p {
+      margin: 4px 0;
+    }
+
+    .contact-lines a {
+      color: #cbf5ff;
+      word-break: break-word;
+    }
+
+    section {
+      margin-top: 22px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+      border-bottom: 1px solid #325a74;
+      padding-bottom: 6px;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    .project-item {
+      margin-bottom: 12px;
+    }
+
+    .project-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .note {
+      margin-top: 20px;
+      border: 1px solid #35627d;
+      border-radius: 10px;
+      background: #0a1723;
+      padding: 12px;
+      color: #d2f4ff;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+        padding: 0;
+      }
+
+      .resume-shell {
+        width: 100%;
+        border: 0;
+        border-radius: 0;
+        background: #ffffff;
+        color: #000000;
+        padding: 0;
+      }
+
+      .actions {
+        display: none;
+      }
+
+      h2 {
+        border-bottom: 1px solid #000000;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .note {
+        border: 1px solid #000000;
+        background: #ffffff;
+        color: #000000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="resume-shell">
+    <div class="actions" aria-label="Ações do currículo">
+      <button class="btn primary" type="button" onclick="window.print()">Imprimir / Salvar PDF</button>
+      <a class="btn" href="index.html">Voltar ao portfólio</a>
+      <a class="btn" href="assets/cv/Christian-Batista-CV.pdf" download="Christian-Batista-CV.pdf">Baixar CV</a>
+      <a class="btn" href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+
+    <header>
+      <h1>Christian Batista</h1>
+      <p class="headline">Desenvolvedor Full Stack Júnior | Foco em Back-end | Node.js | JavaScript</p>
+
+      <div class="contact-lines">
+        <p><strong>E-mail:</strong> Christian.abatista07@gmail.com</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">https://github.com/iikxwl</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/christianabatista/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/christianabatista/</a></p>
+        <!-- CIDADE/ESTADO: ajuste aqui -->
+        <p><strong>Cidade/Estado:</strong> [SUA CIDADE - SEU ESTADO]</p>
+      </div>
+    </header>
+
+    <section aria-labelledby="resumo-title">
+      <h2 id="resumo-title">Resumo profissional</h2>
+      <p>
+        Desenvolvedor Full Stack Júnior em formação, com foco em Back-end e conhecimentos em JavaScript, Node.js,
+        Express, APIs REST, HTML, CSS, Git e GitHub. Experiência prática em projetos de estudo envolvendo CRUD,
+        integração entre front-end e back-end, validação de formulários, consumo de APIs e organização de código.
+        Busco uma oportunidade inicial na área de tecnologia para aplicar meus conhecimentos, evoluir tecnicamente e
+        contribuir com soluções digitais eficientes.
+      </p>
+    </section>
+
+    <section aria-labelledby="skills-title">
+      <h2 id="skills-title">Competências técnicas</h2>
+      <!-- TECNOLOGIAS: ajuste e priorize conforme vaga -->
+      <ul>
+        <li>JavaScript</li>
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>APIs REST</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>Lógica de programação</li>
+        <li>CRUD</li>
+        <li>JSON</li>
+        <li>Fetch API</li>
+        <li>Validação de formulários</li>
+        <li>Responsividade</li>
+        <li>Noções de banco de dados</li>
+        <li>Noções de autenticação</li>
+        <li>Boas práticas de código</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="projects-title">
+      <h2 id="projects-title">Projetos</h2>
+      <!-- LINKS DOS REPOSITÓRIOS: trocar pelos links específicos quando publicar -->
+      <ol>
+        <li class="project-item">
+          <strong>API de Gerenciamento de Usuários</strong>
+          API REST para cadastro, listagem, atualização e remoção de usuários, usando Node.js, Express e armazenamento em JSON.
+        </li>
+        <li class="project-item">
+          <strong>Sistema de Tarefas Full Stack</strong>
+          Aplicação CRUD com front-end integrado ao back-end, permitindo criar, listar, concluir e excluir tarefas.
+        </li>
+        <li class="project-item">
+          <strong>API de Contato do Portfólio</strong>
+          API para validação, armazenamento e envio automático de mensagens do formulário de contato.
+        </li>
+        <li class="project-item">
+          <strong>Portfólio Full Stack</strong>
+          Portfólio pessoal com front-end responsivo, back-end em Node.js, API de projetos, formulário funcional e currículo online.
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="education-title">
+      <h2 id="education-title">Formação acadêmica</h2>
+      <!-- FORMACAO: preencher com curso, instituição e período -->
+      <p>[ADICIONE SUA FORMAÇÃO]</p>
+    </section>
+
+    <section aria-labelledby="courses-title">
+      <h2 id="courses-title">Cursos e certificações</h2>
+      <!-- CURSOS/CERTIFICACOES: preencher com nome do curso e plataforma -->
+      <p>[ADICIONE SEUS CURSOS]</p>
+    </section>
+
+    <section aria-labelledby="experience-title">
+      <h2 id="experience-title">Experiência profissional</h2>
+      <!-- EXPERIENCIAS: preencher com atividades profissionais e/ou projetos práticos -->
+      <p>[ADICIONE SUAS EXPERIÊNCIAS OU PROJETOS PRÁTICOS]</p>
+    </section>
+
+    <section aria-labelledby="language-title">
+      <h2 id="language-title">Idiomas</h2>
+      <!-- IDIOMAS: preencher com nível -->
+      <p>[ADICIONE SEU NÍVEL DE IDIOMA]</p>
+    </section>
+
+    <p class="note">
+      Este currículo foi estruturado em formato ATS-friendly: uma coluna, títulos claros, texto selecionável e palavras-chave técnicas relevantes para vagas de tecnologia.
+    </p>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+﻿<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder de projeto</title>
+  <desc id="desc">Imagem abstrata com gradientes para projeto de portfolio.</desc>
+  <rect width="800" height="500" rx="30" fill="#0A0F1D"/>
+  <g filter="url(#glow1)">
+    <circle cx="220" cy="170" r="120" fill="#00CFFF" fill-opacity="0.25"/>
+  </g>
+  <g filter="url(#glow2)">
+    <circle cx="600" cy="320" r="150" fill="#8B5CF6" fill-opacity="0.25"/>
+  </g>
+  <path d="M80 420L270 220L390 320L520 160L720 420" stroke="#7DD3FC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <rect x="70" y="70" width="240" height="44" rx="12" fill="#111B31" stroke="#4CC9F0"/>
+  <text x="88" y="98" fill="#E6F1FF" font-size="22" font-family="Segoe UI, Arial">Projeto Placeholder</text>
+  <defs>
+    <filter id="glow1" x="0" y="0" width="440" height="390" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="35"/>
+    </filter>
+    <filter id="glow2" x="360" y="80" width="480" height="480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="35"/>
+    </filter>
+  </defs>
+</svg>

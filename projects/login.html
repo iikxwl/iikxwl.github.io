@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTH-004 | Sistema de Login Simples</title>
+  <style>
+    :root {
+      --bg: #050b12;
+      --panel: #101820;
+      --line: #24485e;
+      --green: #00ff88;
+      --cyan: #00e5ff;
+      --text: #e8faff;
+      --muted: #9bc4cf;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0a1f2d, #050b12 60%);
+      color: var(--text);
+      padding: 20px;
+    }
+    .wrapper { width: min(460px, 100%); }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .top-actions a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.46rem 0.82rem;
+      text-decoration: none;
+      color: var(--text);
+      background: #0d1824;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(16, 24, 32, 0.93);
+      padding: 18px;
+    }
+    h1 { margin-top: 0; }
+    p { color: var(--muted); }
+    form { display: grid; gap: 8px; }
+    input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #071019;
+      color: var(--text);
+      padding: 0.72rem 0.84rem;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--green), var(--cyan));
+      color: #00271b;
+      font-weight: 700;
+      padding: 0.62rem 0.92rem;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.75; cursor: not-allowed; }
+    .feedback { min-height: 1.2em; font-size: 0.93rem; }
+    .error { color: #ffbcbc; }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <div class="top-actions">
+      <a href="../index.html#projetos">Voltar ao portfólio</a>
+      <a href="https://github.com/iikxwl" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+    </div>
+
+    <section class="panel">
+      <h1>[AUTH-004] Sistema de Login Simples</h1>
+      <p>
+        Simulação didática de login. Não armazena senha real.
+        Em produção, usar hash de senha, JWT e banco de dados real.
+      </p>
+
+      <form id="login-form" novalidate>
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required autocomplete="email">
+
+        <label for="password">Senha</label>
+        <input id="password" type="password" required minlength="6" autocomplete="current-password">
+
+        <button id="login-button" type="submit">Entrar</button>
+      </form>
+
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginButton = document.getElementById("login-button");
+    const feedback = document.getElementById("feedback");
+
+    function setFeedback(message, isError = false) {
+      feedback.textContent = message;
+      feedback.classList.toggle("error", isError);
+    }
+
+    function validate() {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setFeedback("Informe um e-mail válido.", true);
+        return false;
+      }
+
+      if (password.length < 6) {
+        setFeedback("A senha deve ter pelo menos 6 caracteres.", true);
+        return false;
+      }
+
+      return true;
+    }
+
+    async function requestDemoLogin(payload) {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Falha na simulação de login.");
+      }
+
+      return data;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!validate()) {
+        return;
+      }
+
+      loginButton.disabled = true;
+      loginButton.textContent = "Validando...";
+      setFeedback("Validando login de demonstração...");
+
+      try {
+        const result = await requestDemoLogin({
+          email: emailInput.value.trim(),
+          password: passwordInput.value
+        });
+
+        setFeedback(`${result.message} Token demo: ${result.data.tokenPreview}`);
+        form.reset();
+      } catch (error) {
+        setFeedback(error.message || "Erro no login de demonstração.", true);
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = "Entrar";
+      }
+    });
+  </script>
+</body>
+</html>
